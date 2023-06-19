@@ -34,7 +34,6 @@ window.onload = function() {
     }
     return dominios;
   }
-
   var pronoun = ["the", "our", "Mrs"];
   var adj = ["great", "big", "fun"];
   var noun = ["jogger", "racoon", "dog"];
@@ -43,6 +42,6 @@ window.onload = function() {
   const misDominios = document.querySelector("#domain");
   const dominios = generateDomain(pronoun, adj, noun, domin);
   misDominios.innerHTML = dominios;
-  generateDomain(pronombres, adjetivo, element, dominio);
+
   console.log("Hello Rigo from the console!");
 };
