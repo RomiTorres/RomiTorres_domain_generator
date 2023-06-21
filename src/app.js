@@ -8,7 +8,7 @@ import "./assets/img/4geeks.ico";
 window.onload = function() {
   //write your code here
   function generateDomain(pronoun, adj, noun, domin) {
-    let dominios = "";
+    let dominios = "<table class='table table-striped'>";
 
     for (const i in pronoun) {
       for (const j in adj) {
@@ -20,18 +20,19 @@ window.onload = function() {
             const dominio = domin[l];
 
             dominios +=
-              '<li class="list-group-item">' +
+              "<tr><td >" +
               pronombres +
               adjetivo +
               element +
               dominio +
               " " +
-              "</li>";
+              "</td></tr>";
             console.log(dominios);
           }
         }
       }
     }
+    dominios += "</table>";
     return dominios;
   }
   var pronoun = ["the", "our", "Mrs"];
