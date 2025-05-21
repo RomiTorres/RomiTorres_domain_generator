@@ -5,44 +5,51 @@ import "./style.css";
 import "./assets/img/rigo-baby.jpg";
 import "./assets/img/4geeks.ico";
 
-window.onload = function() {
-  //write your code here
-  function generateDomain(pronoun, adj, noun, domin) {
-    let dominios = "<table class='table table-striped'>";
+let pronouns = ["the", "our"];
+let adjectives = ["great", "big"];
+let nouns = ["jogger", "racoon"];
+let extensions = [".com", ".net", ".us", ".io"];
 
-    for (const i in pronoun) {
-      for (const j in adj) {
-        for (const k in noun) {
-          for (const l in domin) {
-            const pronombres = pronoun[i];
-            const adjetivo = adj[j];
-            const element = noun[k];
-            const dominio = domin[l];
+let domains = [];
 
-            dominios +=
-              "<tr><td >" +
-              pronombres +
-              adjetivo +
-              element +
-              dominio +
-              " " +
-              "</td></tr>";
-            console.log(dominios);
+function generateAllDomains() {
+  for (let i = 0; i < pronouns.length; i++) {
+    for (let j = 0; j < adjectives.length; j++) {
+      for (let k = 0; k < nouns.length; k++) {
+        for (let l = 0; l < extensions.length; l++) {
+          let word = pronouns[i] + adjectives[j] + nouns[k];
+          let ext = extensions[l];
+
+          if (word.endsWith(ext.substring(1))) {
+            let hacked =
+              word.substring(0, word.length - ext.length + 1) +
+              "." +
+              ext.substring(1);
+            domains.push(hacked);
+          } else {
+            domains.push(word + ext);
           }
         }
       }
     }
-    dominios += "</table>";
-    return dominios;
   }
-  var pronoun = ["the", "our", "Mrs"];
-  var adj = ["great", "big", "fun"];
-  var noun = ["jogger", "racoon", "dog"];
-  var domin = [".com", ".net", ".ar", ".es"];
+}
 
-  const misDominios = document.querySelector("#domain");
-  const dominios = generateDomain(pronoun, adj, noun, domin);
-  misDominios.innerHTML = dominios;
+function getRandomDomain() {
+  let index = Math.floor(Math.random() * domains.length);
+  return domains[index];
+}
 
+window.onload = function() {
   console.log("Hello Rigo from the console!");
+
+  generateAllDomains();
+
+  const button = document.getElementById("generateBtn");
+  const output = document.getElementById("domainOutput");
+
+  button.addEventListener("click", function() {
+    let randomDomain = getRandomDomain();
+    output.textContent = randomDomain;
+  });
 };
